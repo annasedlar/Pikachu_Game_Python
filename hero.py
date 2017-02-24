@@ -22,10 +22,40 @@ class Hero(Sprite):
 		self.rect.centery = self.screen_rect.centery;
 		# this will put the left side of the hero at the left side of the screen
 		self.rect.left = self.screen_rect.left;
+		# set up movement booleans. All init @ false
+		self.moving_right = False; 
+		self.moving_left = False; 
+		self.moving_up = False; 
+		self.moving_down = False; 
+
+
+	def update_me(self): 
+		# if user pushes left, move self.rect left etc... 
+		if self.moving_right:
+			self.rect.centerx +=10; 
+		elif self.moving_left: 
+			self.rect.centerx -=10; 
+		elif self.moving_up:
+			self.rect.centery -=10; 
+		elif self.moving_down: 
+			self.rect.centery +=10; 
 
 	def draw_me(self): 
 		# BLIT = Block Image Transfer - take pixels from image and replace part of your screen with them
 		self.screen.blit(source = self.image, dest = self.rect)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
