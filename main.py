@@ -62,6 +62,7 @@ while 1:
 		print "************YOU LOST!****************"
 		print "*************************************"
 		print "*************************************"
+		game_settings.game_active == False; 
 	if game_settings.game_active == False:
 		start_button.draw_button();
 	

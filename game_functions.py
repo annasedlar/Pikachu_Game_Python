@@ -7,6 +7,7 @@ import sys;
 
 from hero import Hero; 
 
+import vlc;
 
 def check_events(hero, start_button, game_settings):
 	for event in pygame.event.get(): 
@@ -20,6 +21,10 @@ def check_events(hero, start_button, game_settings):
 				# collidepoint is non group way
 				if start_button.rect.collidepoint(mouse_x, mouse_y):
 					game_settings.game_active = True; 
+					bg_music = vlc.MediaPlayer("pika_happy.mp3"); 
+					bg_music.play()
+					# bg_music = pygame.mixer.Sound('faf.wav');
+					# bg_music.play();
 			# check for key press (any key)
 			elif event.type == pygame.KEYDOWN:
 				print event.key
