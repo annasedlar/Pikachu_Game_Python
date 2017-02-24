@@ -8,3 +8,4 @@ class Settings(object):
 		# make a background color (take RGB values - (0-255 for R, G, B): 
 		self.bg_color = (82, 111, 53);
 		self.speed = 1; 
+		self.game_active = False; 

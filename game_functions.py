@@ -8,12 +8,18 @@ import sys;
 from hero import Hero; 
 
 
-def check_events(hero):
+def check_events(hero, start_button, game_settings):
 	for event in pygame.event.get(): 
 			# this means the user quit by clicking on the red x
 			if event.type == pygame.QUIT: 
 				# stop the game, the user wants off
 				sys.exit(); 
+			elif event.type == pygame.MOUSEBUTTONDOWN:
+				mouse_x, mouse_y = pygame.mouse.get_pos();
+				# print mouse_x, mouse_y; 
+				# collidepoint is non group way
+				if start_button.rect.collidepoint(mouse_x, mouse_y):
+					game_settings.game_active = True; 
 			# check for key press (any key)
 			elif event.type == pygame.KEYDOWN:
 				print event.key
