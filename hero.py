@@ -6,7 +6,7 @@ from pygame.sprite import Sprite;
 
 class Hero(Sprite):
 	# initialize class properties
-	def __init__(self, screen):
+	def __init__(self, screen, settings):
 		super(Hero,self).__init__();
 		self.image = pygame.image.load('pikachu.png');
 		self.image = pygame.transform.scale(self.image, (100,100)); 
@@ -27,18 +27,18 @@ class Hero(Sprite):
 		self.moving_left = False; 
 		self.moving_up = False; 
 		self.moving_down = False; 
-
+		self.speed = settings.speed;
 
 	def update_me(self): 
 		# if user pushes left, move self.rect left etc... 
 		if self.moving_right:
-			self.rect.centerx +=10; 
+			self.rect.centerx +=10 * self.speed; 
 		elif self.moving_left: 
-			self.rect.centerx -=10; 
+			self.rect.centerx -=10 * self.speed; 
 		elif self.moving_up:
-			self.rect.centery -=10; 
+			self.rect.centery -=10 * self.speed; 
 		elif self.moving_down: 
-			self.rect.centery +=10; 
+			self.rect.centery +=10 * self.speed; 
 
 	def draw_me(self): 
 		# BLIT = Block Image Transfer - take pixels from image and replace part of your screen with them
