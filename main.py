@@ -23,22 +23,27 @@ screen = pygame.display.set_mode(game_settings.screen_size);
 hero = Hero(screen, game_settings);
 
 enemies = Group(); 
-enemies.add(Enemy());
+enemies.add(Enemy(screen, game_settings));
 
 
 # this loop will run forever, while 1... 
 while 1:
 	# run our check_events here
-	check_events(hero)
-	
-		# put our BG color as the fill color of game
-		screen.fill(game_settings.bg_color);
-		# allow movement
-		hero.update_me();
+	check_events(hero);
 
-		hero.draw_me(); 
-		# flip the screen  = wipe it out
-		pygame.display.flip(); 
+	# put our BG color as the fill color of game
+	screen.fill(game_settings.bg_color);
+	# allow movement
+	hero.update_me();
+
+	hero.draw_me(); 
+
+	# loop because enemy is in Group()
+	for enemy in enemies.sprites():
+		enemy.draw_me();
+
+	# flip the screen  = wipe it out
+	pygame.display.flip(); 
 
 
 

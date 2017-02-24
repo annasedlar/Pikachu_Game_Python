@@ -9,7 +9,7 @@ class Hero(Sprite):
 	def __init__(self, screen, settings):
 		super(Hero,self).__init__();
 		self.image = pygame.image.load('pikachu.png');
-		self.image = pygame.transform.scale(self.image, (100,100)); 
+		self.image = pygame.transform.scale(self.image, (70,70)); 
 		self.screen = screen; 
 		# create a rect prop that will be the dimensions and location of the image
 		# it's availabe in get)rect because this is a pygame image
