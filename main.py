@@ -25,9 +25,18 @@ while 1:
 		if event.type == pygame.QUIT: 
 			# stop the game, the user wants off
 			sys.exit(); 
-		# check for key press
+		# check for key press (any key)
 	elif event.type == pygame.KEYDOWN:
 		print event.key
+		# user pressed RIGHT key
+		if event.key == pygame.K_RIGHT:
+			print "pressed right";
+		elif event.key == pygame.K_LEFT:
+			print "pressed left"
+		elif event.key == pygame.K_UP:
+			print "pressed up"
+		elif event.key == pygame.K_DOWN:
+			print "pressed down"
 
 
 
