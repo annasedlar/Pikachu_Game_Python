@@ -5,10 +5,12 @@ from settings import Settings;
 # get our hero class
 from hero import Hero; 
 
-from game_functions import check_events
+from game_functions import check_events;
+
+from game_functions import play_music;
 
 # from pygame get the sprite stuffa nd groupcollide to handle collision
-from pygame.sprite import Group, groupcollide
+from pygame.sprite import Group, groupcollide;
 
 from enemy import Enemy; 
 
@@ -62,6 +64,7 @@ while 1:
 		print "************YOU LOST!****************"
 		print "*************************************"
 		print "*************************************"
+		play_music("pika_happy.mp3", 0.8)
 		game_settings.game_active == False; 
 	if game_settings.game_active == False:
 		start_button.draw_button();
