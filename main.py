@@ -64,7 +64,8 @@ while 1:
 		print "************YOU LOST!****************"
 		print "*************************************"
 		print "*************************************"
-		play_music("pika_happy.mp3", 0.8)
+		bg_music = pygame.mixer.Sound('pikasad.wav');
+		bg_music.play();
 		game_settings.game_active == False; 
 	if game_settings.game_active == False:
 		start_button.draw_button();
