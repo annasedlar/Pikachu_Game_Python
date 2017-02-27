@@ -1,11 +1,15 @@
 import pygame;
 
+import time;
+
 from settings import Settings; 
 
 # get our hero class
 from hero import Hero; 
 
 from game_functions import check_events;
+
+from game_functions import update_screen;
 
 from game_functions import play_music;
 
@@ -47,26 +51,35 @@ bullets = Group();
 # new_bullet = Bullet(screen, hero, game_settings);
 # bullets.add(new_bullet);
 
+game_start_time = time.time();
+print game_start_time; 
 
 # this loop will run forever, while 1... 
 # Absolutely CORE to game programmng - the main while loop
 while 1:
 	# run our check_events here 
-	check_events(screen, hero, start_button, game_settings, bullets);
+	check_events(screen, hero, start_button, game_settings, bullets, enemies);
 
+	update_screen(screen, hero, start_button, game_settings, bullets, enemies);
 	# put our BG color as the fill color of game
 	screen.fill(game_settings.bg_color);
+
+	game_settings.timer = (time.time() - game_start_time);
+	# print int(game_settings.timer)
+
+	if int(game_settings.timer % 5 == 0):
+		enemies.add(Enemy(screen, game_settings));
+
+	# check_events(screen, hero, start_button, game_settings, bullets, enemies);
+
+	# update_screen(screen, hero, game_settings, bullets, enemies);
+
+
 
 	for hero in hero_group.sprites():
 		if game_settings.game_active:
 			# allow movement
 			hero.update_me();
-		hero.draw_me(); 
-
-	# loop through all bullets in the bullet group. call the one we're on "bullet"
-	for bullet in bullets.sprites(): 
-		bullet.update();
-		bullet.draw_bullet(); 
 
 
 	# loop because enemy is in Group()
@@ -75,6 +88,7 @@ while 1:
 		# pass the hero as a param so it knows who to follow
 			enemy.update_me(hero); 
 		enemy.draw_me();
+
 	hero_died = groupcollide(hero_group, enemies, True, True);
 
 	if hero_died: 
@@ -91,8 +105,8 @@ while 1:
 	
 	# start_button.draw_button(); 
 
-	# flip the screen  = wipe it out
-	pygame.display.flip(); 
+	# # flip the screen  = wipe it out
+	# pygame.display.flip(); 
 
 
 

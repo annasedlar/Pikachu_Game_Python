@@ -36,7 +36,7 @@ music_file = "pika_happy.mp3"
 # optional volume 0 to 1.0
 volume = 0.8
 
-def check_events(screen, hero, start_button, game_settings, bullets):
+def check_events(screen, hero, start_button, game_settings, bullets, enemies):
 	for event in pygame.event.get(): 
 			# this means the user quit by clicking on the red x
 			# we want to patch into certain events, like click/keypress/quit... 
@@ -59,11 +59,15 @@ def check_events(screen, hero, start_button, game_settings, bullets):
 
 				if event.key == pygame.K_SPACE:
 					print "pressed space"
-					new_bullet = Bullet(screen, hero, game_settings);
+					new_bullet = Bullet(screen, hero, game_settings, 'right', 'vert');
+					bullets.add(new_bullet);
+					print event.key; 
+				elif event.key == pygame.K_t:
+					new_bullet = Bullet(screen, hero, game_settings, 'up', 'horiz');
 					bullets.add(new_bullet);
 
 				# user pressed RIGHT key
-				if event.key == pygame.K_RIGHT:
+				elif event.key == pygame.K_RIGHT:
 					print "pressed right";
 					hero.moving_right = True;
 				elif event.key == pygame.K_LEFT:
@@ -90,6 +94,19 @@ def check_events(screen, hero, start_button, game_settings, bullets):
 				elif event.key == pygame.K_DOWN:
 					print "pressed down"
 					hero.moving_down = False; 
+
+def update_screen(screen, hero, start_button, game_settings, bullets, enemies): 
+	hero.draw_me(); 
+	# loop through all bullets in the bullet group. call the one we're on "bullet"
+	for bullet in bullets.sprites(): 
+		bullet.update();
+		bullet.draw_bullet(); 
+	for enemy in enemies:
+		enemy.update_me(hero); 
+		enemy.draw_me();
+	# flip the screen  = wipe it out
+	pygame.display.flip(); 
+
 
 
 # static methods are the 'pure' OOP ways to pass functions without needing an instance of a class
