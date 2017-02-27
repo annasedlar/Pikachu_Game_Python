@@ -18,6 +18,10 @@ from start_button import Start_Button;
 
 from bullet import Bullet; 
 
+# from game_functions import utility_functions; 
+
+# utility_functions.check_events();
+
 # initialize all of the pygame modules
 pygame.init();
 
@@ -40,15 +44,15 @@ enemies.add(Enemy(screen, game_settings));
 
 # make a group for the bullets to live in
 bullets = Group();
-new_bullet = Bullet(screen, hero, game_settings);
-bullets.add(new_bullet);
+# new_bullet = Bullet(screen, hero, game_settings);
+# bullets.add(new_bullet);
 
 
 # this loop will run forever, while 1... 
 # Absolutely CORE to game programmng - the main while loop
 while 1:
 	# run our check_events here 
-	check_events(hero, start_button, game_settings);
+	check_events(screen, hero, start_button, game_settings, bullets);
 
 	# put our BG color as the fill color of game
 	screen.fill(game_settings.bg_color);

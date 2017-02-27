@@ -1,11 +1,9 @@
 # all game functions
-
-import pygame;
-
+import pygame
 # to halt our program
 import sys; 
-
 from hero import Hero; 
+from bullet import Bullet
 
 def play_music(music_file, volume=0.8):
     '''
@@ -38,8 +36,7 @@ music_file = "pika_happy.mp3"
 # optional volume 0 to 1.0
 volume = 0.8
 
-
-def check_events(hero, start_button, game_settings):
+def check_events(screen, hero, start_button, game_settings, bullets):
 	for event in pygame.event.get(): 
 			# this means the user quit by clicking on the red x
 			# we want to patch into certain events, like click/keypress/quit... 
@@ -59,6 +56,12 @@ def check_events(hero, start_button, game_settings):
 			# check for key press (any key)
 			elif event.type == pygame.KEYDOWN:
 				print event.key
+
+				if event.key == pygame.K_SPACE:
+					print "pressed space"
+					new_bullet = Bullet(screen, hero, game_settings);
+					bullets.add(new_bullet);
+
 				# user pressed RIGHT key
 				if event.key == pygame.K_RIGHT:
 					print "pressed right";
@@ -87,6 +90,30 @@ def check_events(hero, start_button, game_settings):
 				elif event.key == pygame.K_DOWN:
 					print "pressed down"
 					hero.moving_down = False; 
+
+
+# static methods are the 'pure' OOP ways to pass functions without needing an instance of a class
+# class utility_functions(): 
+# 	@staticmethod
+# 	def check_events():
+# 		print "static test"; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
