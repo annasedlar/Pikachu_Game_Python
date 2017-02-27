@@ -16,11 +16,13 @@ from enemy import Enemy;
 
 from start_button import Start_Button;
 
+from bullet import Bullet; 
+
 # initialize all of the pygame modules
 pygame.init();
 
 # put a message on the status bar so the player knows the name of the game
-pygame.display.set_caption("Monster Attack");
+pygame.display.set_caption("Team Rocket Attack");
  # create an object out of our settings class
 game_settings = Settings(); 
 screen = pygame.display.set_mode(game_settings.screen_size); 
@@ -29,16 +31,23 @@ start_button = Start_Button(screen);
 
 # make a group for the hero to belong to so we an use groupcollide
 hero_group = Group(); 
-hero = Hero(screen, game_settings);
+hero = Hero(screen, 'pikachu.png', game_settings);
 # put hero in group
 hero_group.add(hero)
 
 enemies = Group(); 
 enemies.add(Enemy(screen, game_settings));
 
+# make a group for the bullets to live in
+bullets = Group();
+new_bullet = Bullet(screen, hero, game_settings);
+bullets.add(new_bullet);
+
+
 # this loop will run forever, while 1... 
+# Absolutely CORE to game programmng - the main while loop
 while 1:
-	# run our check_events here
+	# run our check_events here 
 	check_events(hero, start_button, game_settings);
 
 	# put our BG color as the fill color of game
@@ -49,6 +58,12 @@ while 1:
 			# allow movement
 			hero.update_me();
 		hero.draw_me(); 
+
+	# loop through all bullets in the bullet group. call the one we're on "bullet"
+	for bullet in bullets.sprites(): 
+		bullet.update();
+		bullet.draw_bullet(); 
+
 
 	# loop because enemy is in Group()
 	for enemy in enemies.sprites():

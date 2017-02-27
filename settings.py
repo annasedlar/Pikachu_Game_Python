@@ -9,3 +9,8 @@ class Settings(object):
 		self.bg_color = (82, 111, 53);
 		self.speed = 1; 
 		self.game_active = False; 
+
+		self.bullet_width = 20; 
+		self.bullet_height = 3; 
+		self.bullet_speed = 4;
+		self.bullet_color = (0,0,0);

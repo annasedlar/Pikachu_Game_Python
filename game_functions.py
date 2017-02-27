@@ -42,6 +42,8 @@ volume = 0.8
 def check_events(hero, start_button, game_settings):
 	for event in pygame.event.get(): 
 			# this means the user quit by clicking on the red x
+			# we want to patch into certain events, like click/keypress/quit... 
+			# check to see if the occred event is the quit event
 			if event.type == pygame.QUIT: 
 				# stop the game, the user wants off
 				sys.exit(); 
