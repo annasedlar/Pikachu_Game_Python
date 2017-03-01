@@ -8,7 +8,7 @@ class Enemy(Sprite):
 		super(Enemy, self).__init__();
 		self.image = pygame.image.load('team_rocket.png');
 		self.image = pygame.transform.scale(self.image, (150,150)); 
-		self.speed = 1.1; 
+		self.speed = 4; 
 		# find location and size of image that just loaded
 		self.rect = self.image.get_rect(); 
 		# find the location and size of screen
@@ -31,9 +31,8 @@ class Enemy(Sprite):
 			dx = dx/dist; 
 			dy = dy/dist;
 
-
-			self.rect.x -= dx * self.speed; 
-			self.rect.y -= dy * self.speed;
+		self.rect.x -= dx * (self.speed + 1); 
+		self.rect.y -= dy * (self.speed + 1);
 
 
 		
