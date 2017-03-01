@@ -27,11 +27,16 @@ class Enemy(Sprite):
 		# we want enemmy to move on the hpyoteneus.
 		# will make enemy move towards hero
 		dist = math.hypot(dx,dy)
-		dx = dx/dist; 
-		dy = dy/dist; 
+		if dist != 0:
+			dx = dx/dist; 
+			dy = dy/dist;
 
-		self.rect.x -= dx * self.speed; 
-		self.rect.y -= dy * self.speed;
+
+			self.rect.x -= dx * self.speed; 
+			self.rect.y -= dy * self.speed;
+
+
+		
 
 	def draw_me(self):
 		self.screen.blit(self.image, self.rect); 

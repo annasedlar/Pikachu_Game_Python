@@ -87,6 +87,7 @@ while 1:
 		if game_settings.game_active:
 		# pass the hero as a param so it knows who to follow
 			enemy.update_me(hero); 
+			print 'test'
 		enemy.draw_me();
 
 	hero_died = groupcollide(hero_group, enemies, True, True);
